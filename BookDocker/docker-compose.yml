@@ -1,0 +1,21 @@
+version: "3"
+services:
+  book-jdbc:
+    image: book-jdbc
+    ports:
+      - "8080:8080"
+    networks:
+      - book-mysql
+    depends_on:
+      - mysqldb
+ 
+  mysqldb:
+    image: mysql:8
+    networks:
+      - book-mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=bookdb  
+
+networks:
+  book-mysql: 
